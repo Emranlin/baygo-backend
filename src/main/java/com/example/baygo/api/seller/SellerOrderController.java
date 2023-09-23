@@ -27,10 +27,11 @@ public class SellerOrderController {
     public PaginationResponse<FBBOrderResponse> getAllOrders(
             @RequestParam(required = false) String keyword,
             @RequestParam(required = false) OrderStatus status,
+            @RequestParam(required = false) Long categoryId,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size
     ) {
-        return orderService.getAllOrdersByFilter(page, size, keyword, status);
+        return orderService.getAllOrdersByFilter(page, size, keyword, status,categoryId);
     }
 
     @Operation(summary = "Get weekly analysis", description = "This method will get week analysis and filter ")

@@ -4,7 +4,6 @@ import com.example.baygo.db.dto.request.order.BuyerOrderRequest;
 import com.example.baygo.db.dto.response.BuyerOrderHistoryDetailResponse;
 import com.example.baygo.db.dto.response.BuyerOrdersHistoryResponse;
 import com.example.baygo.db.dto.response.PaginationResponse;
-import com.example.baygo.db.dto.response.fbs.FBSOrdersResponse;
 import com.example.baygo.db.dto.response.SimpleResponse;
 import com.example.baygo.db.dto.response.orders.AnalysisResponse;
 import com.example.baygo.db.dto.response.orders.FBBOrderResponse;
@@ -27,7 +26,7 @@ public interface OrderService {
 
     List<RecentOrdersResponse> getResentOrders();
 
-    PaginationResponse<FBBOrderResponse> getAllOrdersByFilter(int page, int size, String keyword, OrderStatus status);
+    PaginationResponse<FBBOrderResponse> getAllOrdersByFilter(int page, int size, String keyword, OrderStatus status,Long categoryId);
 
     List<BuyerOrdersHistoryResponse> getAllHistoryOfOrder(String keyWord);
 

@@ -4,7 +4,6 @@ import com.example.baygo.config.jwt.JwtService;
 import com.example.baygo.db.dto.request.order.BuyerOrderRequest;
 import com.example.baygo.db.dto.request.order.ProductOrderRequest;
 import com.example.baygo.db.dto.response.*;
-import com.example.baygo.db.dto.response.fbs.FBSOrdersResponse;
 import com.example.baygo.db.dto.response.orders.AnalysisResponse;
 import com.example.baygo.db.dto.response.orders.FBBOrderResponse;
 import com.example.baygo.db.dto.response.orders.OrderWareHouseResponse;
@@ -186,10 +185,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PaginationResponse<FBBOrderResponse> getAllOrdersByFilter(int page, int size, String keyword, OrderStatus orderStatus) {
+    public PaginationResponse<FBBOrderResponse> getAllOrdersByFilter(int page, int size, String keyword, OrderStatus orderStatus,Long categoryId) {
         Pageable pageable = PageRequest.of(page - 1, size, Sort.by(Sort.Direction.DESC, "dateOfOrder"));
         Long sellerId = jwtService.getAuthenticate().getSeller().getId();
-        Page<FBBOrderResponse> orderResponses = orderRepository.getAllOrders(sellerId, keyword, orderStatus, pageable);
+        Page<FBBOrderResponse> orderResponses = orderRepository.getAllOrders(sellerId, keyword, orderStatus,categoryId ,pageable);
         return new PaginationResponse<>(orderResponses.getContent(),
                 orderResponses.getNumber() + 1,
                 orderResponses.getTotalPages());
